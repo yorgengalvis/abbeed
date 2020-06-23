@@ -16,25 +16,34 @@ public class Producto implements Comparable<Producto>{
   private int cantProducto;
   private double numeroProducto;
   private float precioUnidad;
+  private int stockMinimo;
 
     public Producto() {
     }
 
+
   
   
-    public Producto(String nombre, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad) {
+    public Producto(String nombre, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad,int stockMinimo) {
+
+    public Producto(String nombre, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad, int stockMinimo) {
+
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantProducto = cantProducto;
         this.numeroProducto = numeroProducto;
         this.precioUnidad = precioUnidad;
+        this.stockMinimo = stockMinimo;
     }
 
+
     
 
     
   
   
+
+
     public String getNombre() {
         return nombre;
     }
@@ -77,6 +86,7 @@ public class Producto implements Comparable<Producto>{
         this.precioUnidad = precioUnidad;
     }
 
+
     @Override
     public String toString() {
         return "Producto{" + "nombre=" + nombre + ", tipo=" + tipo + ", cantProducto=" + cantProducto + ", numeroProducto=" + numeroProducto + ", precioUnidad=" + precioUnidad + '}';
@@ -87,6 +97,19 @@ public class Producto implements Comparable<Producto>{
     public int compareTo(Producto o) {
             return nombre.compareTo(o.getNombre());
     }
+
+    public int getStockMinimo() {
+        return stockMinimo;
+    }
+
+    public void setStockMinimo(int stockMinimo) {
+        this.stockMinimo = stockMinimo;
+    }
+
+  
+  
+   
+
   
 }
 
