@@ -10,6 +10,7 @@ package Negocio;
  * @author Andrey
  */
 public class Producto {
+    
   private String nombre;
   private EnumProducto tipo;
   private int cantProducto;
