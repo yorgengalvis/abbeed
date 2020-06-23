@@ -55,5 +55,20 @@ public class ControlNegocio implements ReglasNegocio{
     public Proveedor buscarProveedor(String NIT) {
         return tienda.buscarProveedor(NIT);
     }
+
+    @Override
+    public String verProductos() {
+        return tienda.verProductos();
+    }
+
+    @Override
+    public String verClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String verProveedores() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
