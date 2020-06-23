@@ -88,7 +88,7 @@ public class Tienda implements ReglasNegocio {
         String msg = "";
         
         for(Iterator<Producto> p = productos.iterator(); p.hasNext();){
-           msg += p.toString();
+           msg += p.next().toString() + "\n";
         }
        
         return msg;
@@ -96,12 +96,24 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public String verClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          String msg = "";
+        
+        for(Iterator<Cliente> c = clientes.iterator(); c.hasNext();){
+           msg += c.next().toString() + "\n";
+        }
+       
+        return msg;
     }
 
     @Override
     public String verProveedores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          String msg = "";
+        
+        for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();){
+           msg += p.next().toString() + "\n";
+        }
+       
+        return msg;
     }
 
 }
