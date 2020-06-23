@@ -9,17 +9,10 @@ import java.util.TreeSet;
 public class Cliente {
     
    private  String nombre;
-   private  String cedula;
+   private  int cedula;
    private  String telefono;
 
     public Cliente() {
-    }
-
-    
-    public Cliente(String nombre, String cedula, String telefono) {
-        this.nombre = nombre;
-        this.cedula = cedula;
-        this.telefono = telefono;
     }
 
     public String getNombre() {
@@ -30,11 +23,11 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
-    public void setCedula(String cedula) {
+    public void setCedula(int cedula) {
         this.cedula = cedula;
     }
 
@@ -45,5 +38,13 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nombre=" + nombre + ", cedula=" + cedula + ", telefono=" + telefono + '}';
+    }
+
+    
+  
     
 }

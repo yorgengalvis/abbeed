@@ -12,6 +12,7 @@ package Negocio;
 public class Producto implements Comparable<Producto>{
     
   private String nombre;
+  private String codigo;
   private EnumProducto tipo;
   private int cantProducto;
   private double numeroProducto;
@@ -21,14 +22,9 @@ public class Producto implements Comparable<Producto>{
     public Producto() {
     }
 
-
-  
-  
-    public Producto(String nombre, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad,int stockMinimo) {
-
-    public Producto(String nombre, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad, int stockMinimo) {
-
+    public Producto(String nombre, String codigo, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad, int stockMinimo) {
         this.nombre = nombre;
+        this.codigo = codigo;
         this.tipo = tipo;
         this.cantProducto = cantProducto;
         this.numeroProducto = numeroProducto;
@@ -36,20 +32,20 @@ public class Producto implements Comparable<Producto>{
         this.stockMinimo = stockMinimo;
     }
 
-
-    
-
-    
-  
-  
-
-
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public EnumProducto getTipo() {
@@ -80,31 +76,33 @@ public class Producto implements Comparable<Producto>{
         return precioUnidad;
     }
 
-  
-     
     public void setPrecioUnidad(float precioUnidad) {
         this.precioUnidad = precioUnidad;
     }
-
-
-    @Override
-    public String toString() {
-        return "Producto{" + "nombre=" + nombre + ", tipo=" + tipo + ", cantProducto=" + cantProducto + ", numeroProducto=" + numeroProducto + ", precioUnidad=" + precioUnidad + '}';
-    }
-
-   
-    @Override
-    public int compareTo(Producto o) {
-            return nombre.compareTo(o.getNombre());
-    }
-
-    public int getStockMinimo() {
+    
+       public int getStockMinimo() {
         return stockMinimo;
     }
 
     public void setStockMinimo(int stockMinimo) {
         this.stockMinimo = stockMinimo;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", codigo=" + codigo + ", tipo=" + tipo + ", cantProducto=" + cantProducto + ", numeroProducto=" + numeroProducto + ", precioUnidad=" + precioUnidad + ", stockMinimo=" + stockMinimo + '}';
+    }
+    
+    
+
+    
+
+    @Override
+    public int compareTo(Producto o) {
+            return nombre.compareTo(o.getNombre());
+    }
+
+ 
 
   
   
