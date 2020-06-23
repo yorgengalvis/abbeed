@@ -16,22 +16,20 @@ public class Producto {
   private int cantProducto;
   private int numeroProducto;
   private float precioUnidad;
+  private int stockMinimo;
 
     public Producto() {
     }
 
-  
-  
-    public Producto(String nombre, EnumProducto tipo, int cantProducto, int numeroProducto, float precioUnidad) {
+    public Producto(String nombre, EnumProducto tipo, int cantProducto, int numeroProducto, float precioUnidad, int stockMinimo) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantProducto = cantProducto;
         this.numeroProducto = numeroProducto;
         this.precioUnidad = precioUnidad;
+        this.stockMinimo = stockMinimo;
     }
 
-  
-  
     public String getNombre() {
         return nombre;
     }
@@ -71,6 +69,17 @@ public class Producto {
     public void setPrecioUnidad(float precioUnidad) {
         this.precioUnidad = precioUnidad;
     }
+
+    public int getStockMinimo() {
+        return stockMinimo;
+    }
+
+    public void setStockMinimo(int stockMinimo) {
+        this.stockMinimo = stockMinimo;
+    }
+
   
+  
+   
   
 }

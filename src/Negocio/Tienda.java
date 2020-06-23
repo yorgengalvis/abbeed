@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Negocio;
 
 /**
@@ -10,5 +6,18 @@ package Negocio;
  * @author Andrey
  */
 public class Tienda {
+    
+    
+    public boolean guardarProducto(Producto producto){
+        return false;
+    }
+    
+    public boolean guardarCliente(Cliente cliente){
+        return false;
+    }
+    
+    public boolean guardarProveedor(Proveedor proveedor){
+        return false;
+    }
     
 }
