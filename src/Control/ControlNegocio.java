@@ -25,5 +25,35 @@ public class ControlNegocio implements ReglasNegocio{
     public boolean guardarProveedor(Proveedor proveedor) {
         return tienda.guardarProveedor(proveedor);
     }
+
+    @Override
+    public boolean venderProducto(Producto producto, Cliente cliente, int cantidad) {
+        return tienda.venderProducto(producto, cliente, cantidad);
+    }
+
+    @Override
+    public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
+        return tienda.comprarProducto(producto, proveedor, cantidad);
+    }
+
+    @Override
+    public boolean comprobarStock(Producto producto) {
+        return tienda.comprobarStock(producto);
+    }
+
+    @Override
+    public Producto buscarProducto(String codigo) {
+        return tienda.buscarProducto(codigo);
+    }
+
+    @Override
+    public Cliente buscarCliente(int cedula) {
+        return tienda.buscarCliente(cedula);
+    }
+
+    @Override
+    public Proveedor buscarProveedor(String NIT) {
+        return tienda.buscarProveedor(NIT);
+    }
     
 }
