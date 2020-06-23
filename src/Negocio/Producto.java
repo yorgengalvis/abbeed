@@ -9,12 +9,12 @@ package Negocio;
  *
  * @author Andrey
  */
-public class Producto {
+public class Producto implements Comparable<Producto>{
     
   private String nombre;
   private EnumProducto tipo;
   private int cantProducto;
-  private int numeroProducto;
+  private double numeroProducto;
   private float precioUnidad;
 
     public Producto() {
@@ -22,7 +22,7 @@ public class Producto {
 
   
   
-    public Producto(String nombre, EnumProducto tipo, int cantProducto, int numeroProducto, float precioUnidad) {
+    public Producto(String nombre, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantProducto = cantProducto;
@@ -30,6 +30,9 @@ public class Producto {
         this.precioUnidad = precioUnidad;
     }
 
+    
+
+    
   
   
     public String getNombre() {
@@ -56,11 +59,11 @@ public class Producto {
         this.cantProducto = cantProducto;
     }
 
-    public int getNumeroProducto() {
+    public double getNumeroProducto() {
         return numeroProducto;
     }
 
-    public void setNumeroProducto(int numeroProducto) {
+    public void setNumeroProducto(double numeroProducto) {
         this.numeroProducto = numeroProducto;
     }
 
@@ -68,9 +71,23 @@ public class Producto {
         return precioUnidad;
     }
 
+  
+     
     public void setPrecioUnidad(float precioUnidad) {
         this.precioUnidad = precioUnidad;
     }
-  
+
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", tipo=" + tipo + ", cantProducto=" + cantProducto + ", numeroProducto=" + numeroProducto + ", precioUnidad=" + precioUnidad + '}';
+    }
+
+   
+    @Override
+    public int compareTo(Producto o) {
+            return nombre.compareTo(o.getNombre());
+    }
   
 }
+
+

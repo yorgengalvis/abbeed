@@ -1,5 +1,7 @@
 package Negocio;
 
+import java.util.TreeSet;
+
 /**
  *
  * @author Andrey
@@ -13,7 +15,6 @@ public class Cliente {
     public Cliente() {
     }
 
-    
     
     public Cliente(String nombre, String cedula, String telefono) {
         this.nombre = nombre;
@@ -44,7 +45,5 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    
     
 }
