@@ -15,19 +15,17 @@ public class Producto implements Comparable<Producto>{
   private String codigo;
   private EnumProducto tipo;
   private int cantProducto;
-  private double numeroProducto;
   private float precioUnidad;
   private int stockMinimo;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String codigo, EnumProducto tipo, int cantProducto, double numeroProducto, float precioUnidad, int stockMinimo) {
+    public Producto(String nombre, String codigo, EnumProducto tipo, int cantProducto,float precioUnidad, int stockMinimo) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.tipo = tipo;
-        this.cantProducto = cantProducto;
-        this.numeroProducto = numeroProducto;
+        this.cantProducto = cantProducto;     
         this.precioUnidad = precioUnidad;
         this.stockMinimo = stockMinimo;
     }
@@ -64,14 +62,6 @@ public class Producto implements Comparable<Producto>{
         this.cantProducto = cantProducto;
     }
 
-    public double getNumeroProducto() {
-        return numeroProducto;
-    }
-
-    public void setNumeroProducto(double numeroProducto) {
-        this.numeroProducto = numeroProducto;
-    }
-
     public float getPrecioUnidad() {
         return precioUnidad;
     }
@@ -90,7 +80,7 @@ public class Producto implements Comparable<Producto>{
 
     @Override
     public String toString() {
-        return "Producto{" + "nombre=" + nombre + ", codigo=" + codigo + ", tipo=" + tipo + ", cantProducto=" + cantProducto + ", numeroProducto=" + numeroProducto + ", precioUnidad=" + precioUnidad + ", stockMinimo=" + stockMinimo + '}';
+        return "Producto{" + "nombre=" + nombre + ", codigo=" + codigo + ", tipo=" + tipo + ", cantProducto=" + cantProducto + ", precioUnidad=" + precioUnidad + ", stockMinimo=" + stockMinimo + '}';
     }
     
     

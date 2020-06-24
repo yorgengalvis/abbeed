@@ -6,7 +6,7 @@ import java.util.TreeSet;
  *
  * @author Andrey
  */
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
     
    private  String nombre;
    private  int cedula;
@@ -15,6 +15,14 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String nombre, int cedula, String telefono) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.telefono = telefono;
+    }
+
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -39,9 +47,15 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    
     @Override
     public String toString() {
         return "Cliente{" + "nombre=" + nombre + ", cedula=" + cedula + ", telefono=" + telefono + '}';
+    }
+
+    @Override
+    public int compareTo(Cliente o) {
+    return nombre.compareTo(o.getNombre());    
     }
 
     
