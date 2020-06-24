@@ -55,8 +55,6 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
-          
-        
         if (comprobarStock(producto)) {
 
             Iterator<Producto> it = productos.iterator();
