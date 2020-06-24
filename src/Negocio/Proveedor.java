@@ -48,4 +48,10 @@ public class Proveedor implements Comparable<Proveedor>{
     return nombre.compareTo(o.getNombre());
     }
 
+    @Override
+    public String toString() {
+        return "Proveedor{" + "nombre=" + nombre + ", NIT=" + NIT + ", telefono=" + telefono + '}';
+    }
+
+    
 }
