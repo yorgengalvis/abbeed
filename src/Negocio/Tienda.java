@@ -14,17 +14,10 @@ public class Tienda implements ReglasNegocio {
     private TreeSet<Cliente> clientes = new TreeSet<>();
     private TreeSet<Proveedor> proveedores = new TreeSet<>();
 
-    /*
-    Andrey men cuando es usted declara un metodo la primera letra es en minuscula
-    ejemplo venderProducto no VenderProducto ya que se puede llegar a confundir con otra cosa
-    son pequeños tips 
-     */
- /*
-    Hay que realizar un metodo para buscar un producto
-    terminelo Andrey por favor
-     */
+  
     @Override
     public Producto buscarProducto(String codigo) {
+<<<<<<< HEAD
         Producto aux = null;
         for(Iterator<Producto> p = productos.iterator(); p.hasNext();){
             Producto buscar = p.next();
@@ -34,12 +27,26 @@ public class Tienda implements ReglasNegocio {
             }
         }
         return aux;
+=======
+     Producto aux= null;
+     for(Iterator<Producto> p = productos.iterator(); p.hasNext(); ){
+     Producto buscar= p.next();
+     if(buscar.getCodigo().equals(codigo)){
+     aux=buscar;
+     break;
+     }}
+    return aux;
+>>>>>>> master
     }
 
     @Override
     public boolean guardarProducto(Producto producto) {
+       
+        if(buscarProducto(producto.getCodigo())==null){
         productos.add(producto);
         return true;
+        }
+        return false;
     }
 
     @Override
@@ -50,9 +57,8 @@ public class Tienda implements ReglasNegocio {
             Iterator<Producto> it = productos.iterator();
             while (it.hasNext()) {
 
-                if (it.next().getNombre().equals(producto.getNombre())) {
-                    productos.remove(it.next());
-                }
+                 productos.remove(buscarProducto(producto.getCodigo()));
+                
             }
             return true;
         }
@@ -61,16 +67,29 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
+          
+        
+        if (comprobarStock(producto)) {
+
+            Iterator<Producto> it = productos.iterator();
+            while (it.hasNext()) {
+
+                 productos.add(buscarProducto(producto.getCodigo()));
+                
+            }
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean comprobarStock(Producto producto) {
-        return false;
+      return producto.getCantProducto()<=producto.getStockMinimo();
     }
 
     @Override
     public Cliente buscarCliente(int cedula) {
+<<<<<<< HEAD
         Cliente aux = null;
         for(Iterator<Cliente> c = clientes.iterator(); c.hasNext();){
             Cliente buscar = c.next();
@@ -80,16 +99,32 @@ public class Tienda implements ReglasNegocio {
             }
         }
         return aux;
+=======
+       Cliente aux= null;
+     for(Iterator<Cliente> c = clientes.iterator(); c.hasNext(); ){
+     Cliente buscar= c.next();
+     if(buscar.getCedula()==cedula){
+     aux=buscar;
+     break;
+     }
+     }
+    return aux;
+>>>>>>> master
     }
 
     @Override
     public boolean guardarCliente(Cliente cliente) {
-        clientes.add(cliente);
+        if(buscarCliente(cliente.getCedula())==null){
+            clientes.add(cliente);
         return true;
+        }
+        
+        return false;
     }
 
     @Override
     public Proveedor buscarProveedor(String NIT) {
+<<<<<<< HEAD
         Proveedor aux =null;
         
         for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();){
@@ -100,11 +135,26 @@ public class Tienda implements ReglasNegocio {
         }
         
         return aux;
+=======
+         Proveedor aux= null;
+     for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext(); ){
+     Proveedor buscar= p.next();
+     if(buscar.getNit().equals(NIT)){
+     aux=buscar;
+     break;
+     }
+     }
+    return aux;
+>>>>>>> master
     }
 
     @Override
     public boolean guardarProveedor(Proveedor proveedor) {
-        proveedores.add(proveedor);
+         if(buscarProveedor(proveedor.getNit())==null){
+            proveedores.add(proveedor);
+        return true;
+        }
+ 
         return false;
     }
 
