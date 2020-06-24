@@ -25,7 +25,15 @@ public class Tienda implements ReglasNegocio {
      */
     @Override
     public Producto buscarProducto(String codigo) {
-        return null;
+        Producto aux = null;
+        for(Iterator<Producto> p = productos.iterator(); p.hasNext();){
+            Producto buscar = p.next();
+            if (buscar.getCodigo().equalsIgnoreCase(codigo)) {
+                aux = buscar;
+                break;
+            }
+        }
+        return aux;
     }
 
     @Override
@@ -63,7 +71,15 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public Cliente buscarCliente(int cedula) {
-        return null;
+        Cliente aux = null;
+        for(Iterator<Cliente> c = clientes.iterator(); c.hasNext();){
+            Cliente buscar = c.next();
+            if (buscar.getCedula() == cedula) {
+                
+                break;
+            }
+        }
+        return aux;
     }
 
     @Override
@@ -74,7 +90,16 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public Proveedor buscarProveedor(String NIT) {
-        return null;
+        Proveedor aux =null;
+        
+        for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();){
+            if (p.next().getNit().equalsIgnoreCase(NIT)) {
+                aux = p.next();
+                break;
+            }            
+        }
+        
+        return aux;
     }
 
     @Override

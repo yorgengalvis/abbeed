@@ -15,6 +15,14 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String nombre, int cedula, String telefono) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.telefono = telefono;
+    }
+    
+    
+
     public String getNombre() {
         return nombre;
     }
@@ -44,7 +52,7 @@ public class Cliente {
         return "Cliente{" + "nombre=" + nombre + ", cedula=" + cedula + ", telefono=" + telefono + '}';
     }
 
-    
+   
   
     
 }
