@@ -36,17 +36,14 @@ public class Tienda implements ReglasNegocio {
         }
         return false;
     }
-    
-    public void hacerPedido(Producto producto,int cantidad){
-      if(buscarProducto(producto.getCodigo())==null){
-          Producto pe=buscarProducto(producto.getCodigo());
-          int nuevaCantidad=pe.getCantProducto()+cantidad;
-          pe.setCantProducto(nuevaCantidad);
-      }
+
+    public void hacerPedido(Producto producto, int cantidad) {
+        if (buscarProducto(producto.getCodigo()) == null) {
+            Producto pe = buscarProducto(producto.getCodigo());
+            int nuevaCantidad = pe.getCantProducto() + cantidad;
+            pe.setCantProducto(nuevaCantidad);
+        }
     }
-    
-    
-    
 
     @Override
     public boolean venderProducto(Producto producto, Cliente cliente, int cant) {
@@ -66,10 +63,6 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
-<<<<<<< HEAD
-
-=======
->>>>>>> master
         if (comprobarStock(producto)) {
 
             Iterator<Producto> it = productos.iterator();
@@ -113,7 +106,7 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public Proveedor buscarProveedor(String NIT) {
-    Proveedor aux = null;
+        Proveedor aux = null;
         for (Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();) {
             Proveedor buscar = p.next();
             if (buscar.getNit().equals(NIT)) {
@@ -133,7 +126,7 @@ public class Tienda implements ReglasNegocio {
 
         return false;
     }
-   
+
     @Override
     public String verProductos() {
         String msg = "";
@@ -147,37 +140,19 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public String verClientes() {
-<<<<<<< HEAD
         String msg = "";
-
         for (Iterator<Cliente> c = clientes.iterator(); c.hasNext();) {
             msg += c.next().toString() + "\n";
         }
-
-=======
-          String msg = "";
-        for(Iterator<Cliente> c = clientes.iterator(); c.hasNext();){
-           msg += c.next().toString() + "\n";
-        }
->>>>>>> master
         return msg;
     }
 
     @Override
     public String verProveedores() {
-<<<<<<< HEAD
         String msg = "";
-
         for (Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();) {
             msg += p.next().toString() + "\n";
         }
-
-=======
-          String msg = "";
-        for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();){
-           msg += p.next().toString() + "\n";
-        }
->>>>>>> master
         return msg;
     }
 

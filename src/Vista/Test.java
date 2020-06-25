@@ -32,11 +32,7 @@ public class Test {
         
         System.out.println(tienda.verProveedores());
         
-<<<<<<< HEAD
         System.out.println(tienda.verClientes());
 
-=======
-        
->>>>>>> master
     }
 }
