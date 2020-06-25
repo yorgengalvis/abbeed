@@ -63,12 +63,12 @@ public class ControlNegocio implements ReglasNegocio{
 
     @Override
     public String verClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return tienda.verClientes();
     }
 
     @Override
     public String verProveedores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return tienda.verProveedores();
     }
     
 }
