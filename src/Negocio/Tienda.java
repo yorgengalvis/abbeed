@@ -14,37 +14,25 @@ public class Tienda implements ReglasNegocio {
     private TreeSet<Cliente> clientes = new TreeSet<>();
     private TreeSet<Proveedor> proveedores = new TreeSet<>();
 
-  
     @Override
     public Producto buscarProducto(String codigo) {
-<<<<<<< HEAD
         Producto aux = null;
-        for(Iterator<Producto> p = productos.iterator(); p.hasNext();){
+        for (Iterator<Producto> p = productos.iterator(); p.hasNext();) {
             Producto buscar = p.next();
-            if (buscar.getCodigo().equalsIgnoreCase(codigo)) {
+            if (buscar.getCodigo().equals(codigo)) {
                 aux = buscar;
                 break;
             }
         }
         return aux;
-=======
-     Producto aux= null;
-     for(Iterator<Producto> p = productos.iterator(); p.hasNext(); ){
-     Producto buscar= p.next();
-     if(buscar.getCodigo().equals(codigo)){
-     aux=buscar;
-     break;
-     }}
-    return aux;
->>>>>>> master
     }
 
     @Override
     public boolean guardarProducto(Producto producto) {
-       
-        if(buscarProducto(producto.getCodigo())==null){
-        productos.add(producto);
-        return true;
+
+        if (buscarProducto(producto.getCodigo()) == null) {
+            productos.add(producto);
+            return true;
         }
         return false;
     }
@@ -57,8 +45,8 @@ public class Tienda implements ReglasNegocio {
             Iterator<Producto> it = productos.iterator();
             while (it.hasNext()) {
 
-                 productos.remove(buscarProducto(producto.getCodigo()));
-                
+                productos.remove(buscarProducto(producto.getCodigo()));
+
             }
             return true;
         }
@@ -67,15 +55,14 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
-          
-        
+
         if (comprobarStock(producto)) {
 
             Iterator<Producto> it = productos.iterator();
             while (it.hasNext()) {
 
-                 productos.add(buscarProducto(producto.getCodigo()));
-                
+                productos.add(buscarProducto(producto.getCodigo()));
+
             }
             return true;
         }
@@ -84,110 +71,85 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public boolean comprobarStock(Producto producto) {
-      return producto.getCantProducto()<=producto.getStockMinimo();
+        return producto.getCantProducto() <= producto.getStockMinimo();
     }
 
     @Override
     public Cliente buscarCliente(int cedula) {
-<<<<<<< HEAD
         Cliente aux = null;
-        for(Iterator<Cliente> c = clientes.iterator(); c.hasNext();){
+        for (Iterator<Cliente> c = clientes.iterator(); c.hasNext();) {
             Cliente buscar = c.next();
             if (buscar.getCedula() == cedula) {
-                
+                aux = buscar;
                 break;
             }
         }
         return aux;
-=======
-       Cliente aux= null;
-     for(Iterator<Cliente> c = clientes.iterator(); c.hasNext(); ){
-     Cliente buscar= c.next();
-     if(buscar.getCedula()==cedula){
-     aux=buscar;
-     break;
-     }
-     }
-    return aux;
->>>>>>> master
     }
 
     @Override
     public boolean guardarCliente(Cliente cliente) {
-        if(buscarCliente(cliente.getCedula())==null){
+        if (buscarCliente(cliente.getCedula()) == null) {
             clientes.add(cliente);
-        return true;
+            return true;
         }
-        
+
         return false;
     }
 
     @Override
     public Proveedor buscarProveedor(String NIT) {
-<<<<<<< HEAD
-        Proveedor aux =null;
-        
-        for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();){
-            if (p.next().getNit().equalsIgnoreCase(NIT)) {
-                aux = p.next();
+    Proveedor aux = null;
+        for (Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();) {
+            Proveedor buscar = p.next();
+            if (buscar.getNit().equals(NIT)) {
+                aux = buscar;
                 break;
-            }            
+            }
         }
-        
         return aux;
-=======
-         Proveedor aux= null;
-     for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext(); ){
-     Proveedor buscar= p.next();
-     if(buscar.getNit().equals(NIT)){
-     aux=buscar;
-     break;
-     }
-     }
-    return aux;
->>>>>>> master
     }
 
     @Override
     public boolean guardarProveedor(Proveedor proveedor) {
-         if(buscarProveedor(proveedor.getNit())==null){
+        if (buscarProveedor(proveedor.getNit()) == null) {
             proveedores.add(proveedor);
-        return true;
+            return true;
         }
- 
+
         return false;
     }
 
     @Override
     public String verProductos() {
         String msg = "";
-        
-        for(Iterator<Producto> p = productos.iterator(); p.hasNext();){
-           msg += p.next().toString() + "\n";
+
+        for (Iterator<Producto> p = productos.iterator(); p.hasNext();) {
+            msg += p.next().toString() + "\n";
         }
-       
+
         return msg;
     }
 
     @Override
     public String verClientes() {
-          String msg = "";
-        
-        for(Iterator<Cliente> c = clientes.iterator(); c.hasNext();){
-           msg += c.next().toString() + "\n";
+        String msg = "";
+
+        for (Iterator<Cliente> c = clientes.iterator(); c.hasNext();) {
+            msg += c.next().toString() + "\n";
         }
-       
+
         return msg;
     }
 
     @Override
     public String verProveedores() {
-          String msg = "";
-        
-        for(Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();){
-           msg += p.next().toString() + "\n";
+        String msg = "";
+
+        for (Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();) {
+            msg += p.next().toString() + "\n";
         }
-       
+
         return msg;
     }
 

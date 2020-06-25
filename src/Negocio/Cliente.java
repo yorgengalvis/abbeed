@@ -20,15 +20,7 @@ public class Cliente implements Comparable<Cliente>{
         this.cedula = cedula;
         this.telefono = telefono;
     }
-<<<<<<< HEAD
-    
-    
 
-=======
-
-    
-    
->>>>>>> master
     public String getNombre() {
         return nombre;
     }
@@ -59,16 +51,11 @@ public class Cliente implements Comparable<Cliente>{
         return "Cliente{" + "nombre=" + nombre + ", cedula=" + cedula + ", telefono=" + telefono + '}';
     }
 
-<<<<<<< HEAD
-   
-=======
     @Override
     public int compareTo(Cliente o) {
     return nombre.compareTo(o.getNombre());    
     }
 
     
->>>>>>> master
-  
-    
+
 }
