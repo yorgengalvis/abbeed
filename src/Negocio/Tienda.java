@@ -2,6 +2,7 @@ package Negocio;
 
 import Interface.ReglasNegocio;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.TreeSet;
 
 /**
@@ -13,7 +14,7 @@ public class Tienda implements ReglasNegocio {
     private TreeSet<Producto> productos = new TreeSet<>();
     private TreeSet<Cliente> clientes = new TreeSet<>();
     private TreeSet<Proveedor> proveedores = new TreeSet<>();
-
+    private LinkedList<Venta> ventas = new LinkedList<Venta>();
   
     @Override
     public Producto buscarProducto(String codigo) {
@@ -36,46 +37,36 @@ public class Tienda implements ReglasNegocio {
         }
         return false;
     }
-    
-    public void hacerPedido(Producto producto,int cantidad){
-      if(buscarProducto(producto.getCodigo())==null){
-          Producto pe=buscarProducto(producto.getCodigo());
-          int nuevaCantidad=pe.getCantProducto()+cantidad;
-          pe.setCantProducto(nuevaCantidad);
-      }
-    }
-    
-    
-    
 
     @Override
     public boolean venderProducto(Producto producto, Cliente cliente, int cant) {
-
-        if (cant >= producto.getCantProducto()) {
-
-            Iterator<Producto> it = productos.iterator();
-            while (it.hasNext()) {
-
-                 productos.remove(buscarProducto(producto.getCodigo()));
-                
-            }
+        if (cant <= producto.getCantProducto()) {
+            Producto avender=buscarProducto(producto.getCodigo());
+            avender.setCantProducto(avender.getCantProducto()-cant);
+            Venta venta=new Venta(avender,cliente,cant);
+            venta.calcularTotal();
+            this.ventas.add(venta);
             return true;
         }
         return false;
     }
+    
+    
+    public String verVentas(){
+        String msg="";
+        for (Venta ve:this.ventas) {
+            msg+=ve.toString()+"\n";
+        }
+        return msg;
+    }
 
     @Override
-    public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
-        if (comprobarStock(producto)) {
-
-            Iterator<Producto> it = productos.iterator();
-            while (it.hasNext()) {
-
-                 productos.add(buscarProducto(producto.getCodigo()));
-                
-            }
-            return true;
-        }
+    public boolean hacerPedido(Producto producto, Proveedor proveedor, int cantidad) {
+        if(buscarProducto(producto.getCodigo())!=null){
+          Producto pe=buscarProducto(producto.getCodigo());
+          int nuevaCantidad=pe.getCantProducto()+cantidad;
+          pe.setCantProducto(nuevaCantidad);
+      }
         return false;
     }
 
@@ -159,4 +150,49 @@ public class Tienda implements ReglasNegocio {
         return msg;
     }
 
+    public int cantidadProductoVendido(Producto producto){
+        int aux=0;
+        for(Venta ves:this.ventas){
+            if(ves.getProducto().equals(producto)){
+                aux+=ves.getCantidad();
+            }
+        }
+       return aux;
+    }
+    
+    public Producto productoMasVendido(){
+        Producto mayor=this.ventas.getFirst().getProducto();
+        for(Venta ves:this.ventas){
+          if(cantidadProductoVendido(ves.getProducto())>cantidadProductoVendido(mayor)){
+              ves.getProducto().setCantProducto(cantidadProductoVendido(ves.getProducto()));
+              mayor=ves.getProducto();
+          }
+        }
+        return mayor;
+    }
+    public Producto productoMenosVendido(){
+        Producto menor=this.ventas.getFirst().getProducto();
+        for(Venta ves:this.ventas){
+          if(cantidadProductoVendido(ves.getProducto())<cantidadProductoVendido(menor)){
+              ves.getProducto().setCantProducto(cantidadProductoVendido(ves.getProducto()));
+              menor=ves.getProducto();
+          }
+        }
+        return menor;
+    }
+    
+    public double totalVentas(){
+        double aux=0;
+        for (Venta ve:this.ventas) {
+            aux+=ve.getTotal();
+        }
+        return aux;
+    }
+    
+    public int promedioVentas(){
+        return (int)this.totalVentas()/this.ventas.size();
+    }
+    
+    
+    
 }

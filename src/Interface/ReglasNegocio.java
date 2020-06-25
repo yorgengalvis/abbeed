@@ -9,7 +9,7 @@ public interface ReglasNegocio {
     public boolean guardarProducto(Producto producto);
     public Producto buscarProducto(String codigo);
     public boolean venderProducto(Producto producto, Cliente cliente, int cantidad);
-    public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad);
+    public boolean hacerPedido(Producto producto, Proveedor proveedor, int cantidad);
     public boolean comprobarStock(Producto producto);
     public String verProductos();
 

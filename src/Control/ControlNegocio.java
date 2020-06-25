@@ -32,8 +32,8 @@ public class ControlNegocio implements ReglasNegocio{
     }
 
     @Override
-    public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
-        return tienda.comprarProducto(producto, proveedor, cantidad);
+    public boolean hacerPedido(Producto producto, Proveedor proveedor, int cantidad) {
+        return tienda.hacerPedido(producto, proveedor, cantidad);
     }
 
     @Override
