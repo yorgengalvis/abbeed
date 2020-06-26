@@ -3,13 +3,14 @@ package Control;
 import Negocio.Cliente;
 import Negocio.EnumProducto;
 import Negocio.Producto;
+import javax.swing.JOptionPane;
 
 public class ControlVista {
 
     private ControlNegocio control = new ControlNegocio();
 
-    public boolean guardarProducto(String nombre, String codigo, EnumProducto tipo, int cantidad, double precioUnidad, int stockMinimo) {
-        return control.guardarProducto(new Producto(nombre, codigo, tipo, cantidad, cantidad, stockMinimo));
+    public boolean guardarProducto(Producto pro) {
+        return control.guardarProducto(pro);
     }
 
     public boolean guardarCliente(String nombre, int cedula, String telefono) {
@@ -32,16 +33,20 @@ public class ControlVista {
         return control.verProductos();
     }
 
-    public String buscarProducto(String codigo) {
-        return control.buscarProducto(codigo).toString();
+    public Producto buscarProducto(String codigo) {
+        return control.buscarProducto(codigo);
+    }
+    
+    public int totalProductosVendidas(){
+        return control.totalProductosVendidas();
     }
 
     public String verClientes() {
         return control.verClientes();
     }
 
-    public String buscarCliente(int cedula) {
-        return control.buscarCliente(cedula).toString();
+    public Cliente buscarCliente(int cedula) {
+        return control.buscarCliente(cedula);
     }
 
     public String productoMasVendido() {

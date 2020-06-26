@@ -4,6 +4,7 @@ import Interface.ReglasNegocio;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,12 +42,9 @@ public class Tienda implements ReglasNegocio {
     public boolean hacerPedido(String codigo, int cantidad) {
         Producto producto = buscarProducto(codigo);
         if (producto != null) {
-            if (buscarProducto(producto.getCodigo()) == null) {
-                Producto pe = buscarProducto(producto.getCodigo());
-                int nuevaCantidad = pe.getCantidad() + cantidad;
-                pe.setCantidad(nuevaCantidad);
-                return true;
-            }
+            int nuevaCantidad = producto.getCantidad() + cantidad;
+            producto.setCantidad(nuevaCantidad);
+            return true;
         }
         return false;
     }
@@ -73,7 +71,7 @@ public class Tienda implements ReglasNegocio {
     public boolean comprobarStock(String codigo) {
         Producto producto = buscarProducto(codigo);
         if (producto != null) {
-            return producto.getCantidad() <= producto.getStockMinimo();
+            if(producto.getCantidad()<=producto.getStockMinimo()) return true;
         }
         return false;
     }
@@ -172,9 +170,17 @@ public class Tienda implements ReglasNegocio {
         return aux;
     }
 
+    public int totalProductosVendidas() {
+        int aux = 0;
+        for (Venta v : this.ventas) {
+            aux += v.getCantidad();
+        }
+        return aux;
+    }
+
     @Override
     public int promedioVentas() {
-        return (int) this.totalVentas() / this.ventas.size();
+        return (int) this.totalVentas() / totalProductosVendidas();
     }
 
 }

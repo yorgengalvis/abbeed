@@ -4,6 +4,7 @@ import Interface.ReglasNegocio;
 import Negocio.Cliente;
 import Negocio.Producto;
 import Negocio.Tienda;
+import javax.swing.JOptionPane;
 
 public class ControlNegocio implements ReglasNegocio {
 
@@ -23,7 +24,7 @@ public class ControlNegocio implements ReglasNegocio {
     public boolean venderProducto(String codigo, int cedula, int cantidad) {
         return tienda.venderProducto(codigo, cedula, cantidad);
     }
-
+    
     @Override
     public boolean hacerPedido(String codigo, int cantidad) {
         return tienda.hacerPedido(codigo, cantidad);
@@ -76,6 +77,11 @@ public class ControlNegocio implements ReglasNegocio {
     
     public String verVentas(){
         return tienda.verVentas();
+    }
+
+    @Override
+    public int totalProductosVendidas() {
+    return tienda.totalProductosVendidas();    
     }
 
 }

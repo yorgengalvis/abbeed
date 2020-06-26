@@ -19,5 +19,6 @@ public interface ReglasNegocio {
     public Producto productoMenosVendido();
     public double totalVentas(); 
     public int promedioVentas(); 
+    public int totalProductosVendidas();
    
 }
