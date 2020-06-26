@@ -21,8 +21,6 @@ public class Cliente implements Comparable<Cliente>{
         this.telefono = telefono;
     }
 
-    
-    
     public String getNombre() {
         return nombre;
     }
@@ -59,6 +57,5 @@ public class Cliente implements Comparable<Cliente>{
     }
 
     
-  
-    
+
 }

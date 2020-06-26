@@ -1,16 +1,14 @@
-
 package Control;
 
 import Interface.ReglasNegocio;
 import Negocio.Cliente;
 import Negocio.Producto;
-import Negocio.Proveedor;
 import Negocio.Tienda;
 
-public class ControlNegocio implements ReglasNegocio{
+public class ControlNegocio implements ReglasNegocio {
 
     private Tienda tienda = new Tienda();
-    
+
     @Override
     public boolean guardarProducto(Producto producto) {
         return tienda.guardarProducto(producto);
@@ -22,23 +20,18 @@ public class ControlNegocio implements ReglasNegocio{
     }
 
     @Override
-    public boolean guardarProveedor(Proveedor proveedor) {
-        return tienda.guardarProveedor(proveedor);
+    public boolean venderProducto(String codigo, int cedula, int cantidad) {
+        return tienda.venderProducto(codigo, cedula, cantidad);
     }
 
     @Override
-    public boolean venderProducto(Producto producto, Cliente cliente, int cantidad) {
-        return tienda.venderProducto(producto, cliente, cantidad);
+    public boolean hacerPedido(String codigo, int cantidad) {
+        return tienda.hacerPedido(codigo, cantidad);
     }
 
     @Override
-    public boolean hacerPedido(Producto producto, Proveedor proveedor, int cantidad) {
-        return tienda.hacerPedido(producto, proveedor, cantidad);
-    }
-
-    @Override
-    public boolean comprobarStock(Producto producto) {
-        return tienda.comprobarStock(producto);
+    public boolean comprobarStock(String codigo) {
+        return tienda.comprobarStock(codigo);
     }
 
     @Override
@@ -52,23 +45,37 @@ public class ControlNegocio implements ReglasNegocio{
     }
 
     @Override
-    public Proveedor buscarProveedor(String NIT) {
-        return tienda.buscarProveedor(NIT);
-    }
-
-    @Override
     public String verProductos() {
         return tienda.verProductos();
     }
 
     @Override
     public String verClientes() {
-       return tienda.verClientes();
+        return tienda.verClientes();
     }
 
     @Override
-    public String verProveedores() {
-    return tienda.verProveedores();
+    public Producto productoMasVendido() {
+        return tienda.productoMasVendido();
+    }
+
+    @Override
+    public Producto productoMenosVendido() {
+        return tienda.productoMenosVendido();
+    }
+
+    @Override
+    public double totalVentas() {
+        return tienda.totalVentas();
+    }
+
+    @Override
+    public int promedioVentas() {
+        return tienda.promedioVentas();
     }
     
+    public String verVentas(){
+        return tienda.verVentas();
+    }
+
 }
