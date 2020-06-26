@@ -13,13 +13,8 @@ public class Tienda implements ReglasNegocio {
 
     private TreeSet<Producto> productos = new TreeSet<>();
     private TreeSet<Cliente> clientes = new TreeSet<>();
-    private TreeSet<Proveedor> proveedores = new TreeSet<>();
-<<<<<<< HEAD
+    private LinkedList<Venta> ventas = new LinkedList<>();
 
-=======
-    private LinkedList<Venta> ventas = new LinkedList<Venta>();
-  
->>>>>>> master
     @Override
     public Producto buscarProducto(String codigo) {
         Producto aux = null;
@@ -35,86 +30,52 @@ public class Tienda implements ReglasNegocio {
 
     @Override
     public boolean guardarProducto(Producto producto) {
-
         if (buscarProducto(producto.getCodigo()) == null) {
             productos.add(producto);
             return true;
         }
         return false;
     }
-<<<<<<< HEAD
-
-    public void hacerPedido(Producto producto, int cantidad) {
-        if (buscarProducto(producto.getCodigo()) == null) {
-            Producto pe = buscarProducto(producto.getCodigo());
-            int nuevaCantidad = pe.getCantProducto() + cantidad;
-            pe.setCantProducto(nuevaCantidad);
-        }
-    }
 
     @Override
-    public boolean venderProducto(Producto producto, Cliente cliente, int cant) {
-
-        if (cant >= producto.getCantProducto()) {
-
-            Iterator<Producto> it = productos.iterator();
-            while (it.hasNext()) {
-
-                productos.remove(buscarProducto(producto.getCodigo()));
-
+    public boolean hacerPedido(String codigo, int cantidad) {
+        Producto producto = buscarProducto(codigo);
+        if (producto != null) {
+            if (buscarProducto(producto.getCodigo()) == null) {
+                Producto pe = buscarProducto(producto.getCodigo());
+                int nuevaCantidad = pe.getCantidad() + cantidad;
+                pe.setCantidad(nuevaCantidad);
+                return true;
             }
-=======
-
-    @Override
-    public boolean venderProducto(Producto producto, Cliente cliente, int cant) {
-        if (cant <= producto.getCantProducto()) {
-            Producto avender=buscarProducto(producto.getCodigo());
-            avender.setCantProducto(avender.getCantProducto()-cant);
-            Venta venta=new Venta(avender,cliente,cant);
-            venta.calcularTotal();
-            this.ventas.add(venta);
->>>>>>> master
-            return true;
         }
-        return false;
-    }
-    
-    
-    public String verVentas(){
-        String msg="";
-        for (Venta ve:this.ventas) {
-            msg+=ve.toString()+"\n";
-        }
-        return msg;
-    }
-
-    @Override
-<<<<<<< HEAD
-    public boolean comprarProducto(Producto producto, Proveedor proveedor, int cantidad) {
-        if (comprobarStock(producto)) {
-
-            Iterator<Producto> it = productos.iterator();
-            while (it.hasNext()) {
-
-                productos.add(buscarProducto(producto.getCodigo()));
-
-            }
-            return true;
-        }
-=======
-    public boolean hacerPedido(Producto producto, Proveedor proveedor, int cantidad) {
-        if(buscarProducto(producto.getCodigo())!=null){
-          Producto pe=buscarProducto(producto.getCodigo());
-          int nuevaCantidad=pe.getCantProducto()+cantidad;
-          pe.setCantProducto(nuevaCantidad);
-      }
->>>>>>> master
         return false;
     }
 
     @Override
-    public boolean comprobarStock(Producto producto) {
-        return producto.getCantProducto() <= producto.getStockMinimo();
+    public boolean venderProducto(String codigoProducto, int cedulaCliente, int cant) {
+        Producto producto = buscarProducto(codigoProducto);
+        Cliente cliente = buscarCliente(cedulaCliente);
+
+        if (producto != null && cliente != null) {
+            if (cant <= producto.getCantidad()) {
+                Producto avender = buscarProducto(producto.getCodigo());
+                avender.setCantidad(avender.getCantidad() - cant);
+                Venta venta = new Venta(avender, cliente, cant);
+                venta.calcularTotal();
+                this.ventas.add(venta);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean comprobarStock(String codigo) {
+        Producto producto = buscarProducto(codigo);
+        if (producto != null) {
+            return producto.getCantidad() <= producto.getStockMinimo();
+        }
+        return false;
     }
 
     @Override
@@ -141,29 +102,6 @@ public class Tienda implements ReglasNegocio {
     }
 
     @Override
-    public Proveedor buscarProveedor(String NIT) {
-        Proveedor aux = null;
-        for (Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();) {
-            Proveedor buscar = p.next();
-            if (buscar.getNit().equals(NIT)) {
-                aux = buscar;
-                break;
-            }
-        }
-        return aux;
-    }
-
-    @Override
-    public boolean guardarProveedor(Proveedor proveedor) {
-        if (buscarProveedor(proveedor.getNit()) == null) {
-            proveedores.add(proveedor);
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
     public String verProductos() {
         String msg = "";
 
@@ -183,58 +121,60 @@ public class Tienda implements ReglasNegocio {
         return msg;
     }
 
-    @Override
-    public String verProveedores() {
+    public String verVentas() {
         String msg = "";
-        for (Iterator<Proveedor> p = proveedores.iterator(); p.hasNext();) {
-            msg += p.next().toString() + "\n";
+        for (Venta ve : this.ventas) {
+            msg += ve.toString() + "\n";
         }
         return msg;
     }
 
-    public int cantidadProductoVendido(Producto producto){
-        int aux=0;
-        for(Venta ves:this.ventas){
-            if(ves.getProducto().equals(producto)){
-                aux+=ves.getCantidad();
+    public int cantidadProductoVendido(Producto producto) {
+        int aux = 0;
+        for (Venta ves : this.ventas) {
+            if (ves.getProducto().equals(producto)) {
+                aux += ves.getCantidad();
             }
-        }
-       return aux;
-    }
-    
-    public Producto productoMasVendido(){
-        Producto mayor=this.ventas.getFirst().getProducto();
-        for(Venta ves:this.ventas){
-          if(cantidadProductoVendido(ves.getProducto())>cantidadProductoVendido(mayor)){
-              ves.getProducto().setCantProducto(cantidadProductoVendido(ves.getProducto()));
-              mayor=ves.getProducto();
-          }
-        }
-        return mayor;
-    }
-    public Producto productoMenosVendido(){
-        Producto menor=this.ventas.getFirst().getProducto();
-        for(Venta ves:this.ventas){
-          if(cantidadProductoVendido(ves.getProducto())<cantidadProductoVendido(menor)){
-              ves.getProducto().setCantProducto(cantidadProductoVendido(ves.getProducto()));
-              menor=ves.getProducto();
-          }
-        }
-        return menor;
-    }
-    
-    public double totalVentas(){
-        double aux=0;
-        for (Venta ve:this.ventas) {
-            aux+=ve.getTotal();
         }
         return aux;
     }
-    
-    public int promedioVentas(){
-        return (int)this.totalVentas()/this.ventas.size();
+
+    @Override
+    public Producto productoMasVendido() {
+        Producto mayor = this.ventas.getFirst().getProducto();
+        for (Venta ves : this.ventas) {
+            if (cantidadProductoVendido(ves.getProducto()) > cantidadProductoVendido(mayor)) {
+                ves.getProducto().setCantidad(cantidadProductoVendido(ves.getProducto()));
+                mayor = ves.getProducto();
+            }
+        }
+        return mayor;
     }
-    
-    
-    
+
+    @Override
+    public Producto productoMenosVendido() {
+        Producto menor = this.ventas.getFirst().getProducto();
+        for (Venta ves : this.ventas) {
+            if (cantidadProductoVendido(ves.getProducto()) < cantidadProductoVendido(menor)) {
+                ves.getProducto().setCantidad(cantidadProductoVendido(ves.getProducto()));
+                menor = ves.getProducto();
+            }
+        }
+        return menor;
+    }
+
+    @Override
+    public double totalVentas() {
+        double aux = 0;
+        for (Venta ve : this.ventas) {
+            aux += ve.getTotal();
+        }
+        return aux;
+    }
+
+    @Override
+    public int promedioVentas() {
+        return (int) this.totalVentas() / this.ventas.size();
+    }
+
 }
